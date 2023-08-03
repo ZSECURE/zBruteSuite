@@ -6,7 +6,7 @@ import time
 from ldap3 import Server, Connection, ALL, NTLM, AUTO_BIND_NO_TLS
 from colorama import Fore, Style
 
-def brute_force_login(host, usernames, passwords, delay, protocol, naming_context, output_file):
+def brute_force_login(host, usernames, passwords, delay, naming_context, output_file):
     valid_credentials = []  # list to store valid credentials
 
     for password in passwords:
@@ -25,7 +25,7 @@ def brute_force_login(host, usernames, passwords, delay, protocol, naming_contex
             except Exception:
                 raise
 
-        time.sleep(delay * 5)
+        time.sleep(delay * 60)
 
     save_valid_credentials(output_file, valid_credentials)
 
@@ -48,7 +48,6 @@ if __name__ == "__main__":
     parser.add_argument("-i", "--host", type=str, help="Host/DC IP address")
     parser.add_argument("-u", "--usernamesfile", type=str, help="Path to the file containing the usernames")
     parser.add_argument("-p", "--passwordsfile", type=str, help="Path to the file containing the passwords")
-    parser.add_argument("-t", "--protocol", type=str, choices=["ldap"], default="ldap", help="Protocol to use for login (only LDAP available)")
     parser.add_argument("-o", "--outputfile", type=str, default="valid_credentials.txt", help="Output file for the valid credentials")
     parser.add_argument("-n", "--namingcontext", type=str, help="LDAP naming context")
     parser.add_argument("-ds", "--domain-shortname", help='Domain short name for the LDAP server')
@@ -64,4 +63,4 @@ if __name__ == "__main__":
         with open(args.passwordsfile, 'r') as f:
             passwords = f.read().splitlines()
 
-        brute_force_login(args.host, usernames, passwords, args.delay, args.protocol, args.namingcontext, args.outputfile)
+        brute_force_login(args.host, usernames, passwords, args.delay, args.namingcontext, args.outputfile)
