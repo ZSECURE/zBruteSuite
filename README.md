@@ -26,12 +26,12 @@ options:
 # zLdapBrute
 Example Command
 ``` bash
-python3 zLdapBrute.py  -d 1 -i 10.11.1.1 -u username.txt -p passwords.txt -t ldap -n DC=test,DC=labs -ds test
+python3 zLdapBrute.py  -d 1 -i 10.11.1.1 -u username.txt -p passwords.txt -n DC=test,DC=labs -ds test
 ```
 Help...
 ``` bash
 -[~/Desktop]$ python3 zLdapBrute.py
-usage: zLdapBrute.py [-h] [-d DELAY] [-i HOST] [-u USERNAMESFILE] [-p PASSWORDSFILE] [-t {ldap}] [-o OUTPUTFILE] [-n NAMINGCONTEXT] [-ds DOMAIN_SHORTNAME]
+usage: zLdapBrute.py [-h] [-d DELAY] [-i HOST] [-u USERNAMESFILE] [-p PASSWORDSFILE] [-o OUTPUTFILE] [-n NAMINGCONTEXT] [-ds DOMAIN_SHORTNAME]
 
 User credentials brute force script
 
@@ -44,8 +44,6 @@ options:
                         Path to the file containing the usernames
   -p PASSWORDSFILE, --passwordsfile PASSWORDSFILE
                         Path to the file containing the passwords
-  -t {ldap}, --protocol {ldap}
-                        Protocol to use for login (only LDAP available)
   -o OUTPUTFILE, --outputfile OUTPUTFILE
                         Output file for the valid credentials
   -n NAMINGCONTEXT, --namingcontext NAMINGCONTEXT
